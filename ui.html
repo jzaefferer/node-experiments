@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>netcontrol.js</title>
+		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var anchors = $("a").click(function(event) {
+					event.preventDefault();
+					var params = {
+						name: $(this).attr("href"),
+						value: $(this).text()
+					};
+					$.getJSON("/update", params, function(response) {
+						anchors.each(function(index) {
+							$(this).text(response[index].value);
+						});
+					});
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<a href="F0">0</a>
+		<a href="F1">0</a>
+		<a href="F2">0</a>
+	</body>
+</html>
