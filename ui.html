@@ -2,9 +2,7 @@
 <html>
 	<head>
 		<title>netcontrol.js</title>
-		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+		<script src="jquery.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				var anchors = $("a").click(function(event) {
@@ -23,8 +21,20 @@
 		</script>
 	</head>
 	<body>
-		<a href="F0">0</a>
-		<a href="F1">0</a>
-		<a href="F2">0</a>
+		<ul>
+			<li>
+				Mixer
+				<a href="F0">0</a>
+			</li>
+			<li>
+				Radiowecker
+				<a href="F1">0</a>
+			</li>
+			<li>
+				Irgendwas anderes
+				<a href="F2">0</a>
+			</li>
+			
+		</ul>
 	</body>
 </html>

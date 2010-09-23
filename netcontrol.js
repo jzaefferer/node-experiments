@@ -1,7 +1,7 @@
 var http = require('http');
 var parse = require('url').parse;
 var fs = require('fs');
-var client = http.createClient(80, '192.168.50.121');
+var client = http.createClient(80, '192.168.0.2');
 
 function update(name, value, callback) {
 	var request = client.request('/ctrl.cgi?' + name + '=' + value);
@@ -34,16 +34,20 @@ if (process.argv.length == 3) {
 } else {
 	var http = require('http');
 	var port = 8124;
-	var ui = fs.readFileSync("ui.html", "utf-8");
+	var ui = fs.readFileSync("ui.html", "utf-8"),
+		jquery = fs.readFileSync("jquery.js", "utf-8");
 	http.createServer(function (req, res) {
 		var params = parse(req.url, true);
 		console.log(JSON.stringify(params));	
 		if (params.pathname == "/") {
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.end(ui);
+		} else if (params.pathname.match("jquery.js$")) {
+			res.writeHead(200, {'Content-Type': 'text/javascript'});
+			res.end(jquery);
 		} else {
 			update(params.query.name, params.query.value, function(sockets) {
-				res.writeHead(200, {'Content-Type': 'text/json'});
+				res.writeHead(200, {'Content-Type': 'application/json'});
 				res.end(JSON.stringify(sockets));
 			});
 		}
